@@ -1,0 +1,3 @@
+table:
+  name: organization_permissions
+  schema: public

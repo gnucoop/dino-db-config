@@ -1,0 +1,210 @@
+table:
+  name: form_schema
+  schema: public
+object_relationships:
+  - name: form_schema_dep
+    using:
+      foreign_key_constraint_on: form_schema_deps_ref_id
+array_relationships:
+  - name: form_data
+    using:
+      foreign_key_constraint_on:
+        column: form_schema_ref_id
+        table:
+          name: form_data
+          schema: public
+  - name: form_permissions
+    using:
+      manual_configuration:
+        column_mapping:
+          id: form_schema_id
+        insertion_order: null
+        remote_table:
+          name: form_permissions
+          schema: public
+  - name: form_status
+    using:
+      manual_configuration:
+        column_mapping:
+          form_status_ref_id: id
+        insertion_order: null
+        remote_table:
+          name: form_status
+          schema: public
+  - name: logs
+    using:
+      foreign_key_constraint_on:
+        column: form_schema_ref_id
+        table:
+          name: log
+          schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        _exists:
+          _table:
+            name: form_permissions
+            schema: public
+          _where:
+            _and:
+              - form_schema_id:
+                  _eq: 7044761a-a850-4c37-b6bc-c2d2ca2a3280
+              - user_id:
+                  _eq: X-Hasura-User-Id
+              - _or:
+                  - form_schema_permissions:
+                      _contains: create
+                  - form_schema_permissions:
+                      _contains: all
+      columns:
+        - id
+        - created_at
+        - updated_at
+        - name
+        - schema
+        - label
+        - icon
+        - _deleted
+        - _rev
+        - _attachments
+        - is_deleted
+        - visibility
+        - form_schema_deps_ref_id
+        - form_status_ref_id
+        - form_schema_metrics
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - _attachments
+        - _deleted
+        - _rev
+        - created_at
+        - form_schema_deps_ref_id
+        - form_schema_metrics
+        - form_status_ref_id
+        - icon
+        - id
+        - is_deleted
+        - label
+        - name
+        - schema
+        - updated_at
+        - visibility
+      filter:
+        visibility:
+          _eq: 1
+  - role: public
+    permission:
+      columns:
+        - _attachments
+        - _deleted
+        - _rev
+        - created_at
+        - form_schema_deps_ref_id
+        - form_schema_metrics
+        - form_status_ref_id
+        - icon
+        - id
+        - is_deleted
+        - label
+        - name
+        - schema
+        - updated_at
+        - visibility
+      filter:
+        visibility:
+          _eq: 1
+  - role: user
+    permission:
+      columns:
+        - _deleted
+        - is_deleted
+        - created_at
+        - _attachments
+        - form_schema_metrics
+        - form_status_ref_id
+        - schema
+        - visibility
+        - icon
+        - label
+        - name
+        - _rev
+        - updated_at
+        - form_schema_deps_ref_id
+        - id
+      filter:
+        _and:
+          - _or:
+              - _exists:
+                  _table:
+                    name: form_permissions
+                    schema: public
+                  _where:
+                    _and:
+                      - form_schema_id:
+                          _eq: 7044761a-a850-4c37-b6bc-c2d2ca2a3280
+                      - user_id:
+                          _eq: X-Hasura-User-Id
+                      - _or:
+                          - form_schema_permissions:
+                              _contains: view
+                          - form_schema_permissions:
+                              _contains: all
+              - form_permissions:
+                  _and:
+                    - user_id:
+                        _eq: X-Hasura-User-Id
+                    - _or:
+                        - form_schema_permissions:
+                            _contains: view
+                        - form_schema_permissions:
+                            _contains: all
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - _deleted
+        - is_deleted
+        - created_at
+        - _attachments
+        - form_schema_metrics
+        - form_status_ref_id
+        - schema
+        - visibility
+        - icon
+        - label
+        - name
+        - _rev
+        - updated_at
+        - form_schema_deps_ref_id
+        - id
+      filter:
+        _and:
+          - _or:
+              - _exists:
+                  _table:
+                    name: form_permissions
+                    schema: public
+                  _where:
+                    _and:
+                      - form_schema_id:
+                          _eq: 7044761a-a850-4c37-b6bc-c2d2ca2a3280
+                      - user_id:
+                          _eq: X-Hasura-User-Id
+                      - _or:
+                          - form_schema_permissions:
+                              _contains: edit
+                          - form_schema_permissions:
+                              _contains: all
+              - form_permissions:
+                  _and:
+                    - user_id:
+                        _eq: X-Hasura-User-Id
+                    - _or:
+                        - form_schema_permissions:
+                            _contains: edit
+                        - form_schema_permissions:
+                            _contains: all
+      check: {}

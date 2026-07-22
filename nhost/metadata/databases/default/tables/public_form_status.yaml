@@ -1,0 +1,101 @@
+table:
+  name: form_status
+  schema: public
+array_relationships:
+  - name: form_data
+    using:
+      foreign_key_constraint_on:
+        column: form_status_ref_id
+        table:
+          name: form_data
+          schema: public
+  - name: report_data
+    using:
+      manual_configuration:
+        column_mapping:
+          id: form_status_ref_id
+        insertion_order: null
+        remote_table:
+          name: report_data
+          schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - id
+        - created_at
+        - updated_at
+        - name
+        - label
+        - color
+        - _deleted
+        - _rev
+        - _attachments
+        - is_deleted
+        - status_level
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - _deleted
+        - is_deleted
+        - created_at
+        - status_level
+        - _attachments
+        - color
+        - label
+        - name
+        - _rev
+        - updated_at
+        - id
+      filter: {}
+    comment: ""
+  - role: public
+    permission:
+      columns:
+        - _deleted
+        - is_deleted
+        - created_at
+        - status_level
+        - _attachments
+        - color
+        - label
+        - name
+        - _rev
+        - updated_at
+        - id
+      filter: {}
+    comment: ""
+  - role: user
+    permission:
+      columns:
+        - _deleted
+        - is_deleted
+        - created_at
+        - status_level
+        - _attachments
+        - color
+        - label
+        - name
+        - _rev
+        - updated_at
+        - id
+      filter: {}
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - _deleted
+        - is_deleted
+        - created_at
+        - status_level
+        - _attachments
+        - color
+        - label
+        - name
+        - _rev
+        - updated_at
+        - id
+      filter: {}
+      check: {}

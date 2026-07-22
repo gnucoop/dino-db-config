@@ -1,0 +1,249 @@
+DROP FUNCTION IF EXISTS public.refresh_area_permissions() CASCADE;
+
+CREATE
+OR REPLACE FUNCTION public.refresh_area_permissions() RETURNS TRIGGER LANGUAGE plpgsql AS $$ 
+BEGIN REFRESH MATERIALIZED VIEW CONCURRENTLY public.area_permissions;
+
+RETURN NULL;
+
+END $$;
+
+------------
+DROP TRIGGER IF EXISTS refresh_user_group_area_permissions on public.user_group;
+
+CREATE TRIGGER refresh_user_group_area_permissions
+AFTER
+INSERT
+   OR
+UPDATE
+   OR DELETE
+   OR TRUNCATE ON public.user_group FOR EACH STATEMENT EXECUTE FUNCTION public.refresh_area_permissions();
+
+------------
+DROP TRIGGER IF EXISTS refresh_user_data_area_permissions on public.user_data;
+
+CREATE TRIGGER refresh_user_data_area_permissions
+AFTER
+INSERT
+   OR
+UPDATE
+   OR DELETE
+   OR TRUNCATE ON public.user_data FOR EACH STATEMENT EXECUTE FUNCTION public.refresh_area_permissions();
+
+------------
+DROP FUNCTION IF EXISTS public.refresh_case_permissions() CASCADE;
+
+CREATE
+OR REPLACE FUNCTION public.refresh_case_permissions() RETURNS TRIGGER LANGUAGE plpgsql AS $$ 
+BEGIN REFRESH MATERIALIZED VIEW CONCURRENTLY public.case_permissions;
+
+RETURN NULL;
+
+END $$;
+
+------------
+DROP TRIGGER IF EXISTS refresh_user_group_case_permissions on public.user_group;
+
+CREATE TRIGGER refresh_user_group_case_permissions
+AFTER
+INSERT
+   OR
+UPDATE
+   OR DELETE
+   OR TRUNCATE ON public.user_group FOR EACH STATEMENT EXECUTE FUNCTION public.refresh_case_permissions();
+
+------------
+DROP TRIGGER IF EXISTS refresh_user_data_case_permissions on public.user_data;
+
+CREATE TRIGGER refresh_user_data_case_permissions
+AFTER
+INSERT
+   OR
+UPDATE
+   OR DELETE
+   OR TRUNCATE ON public.user_data FOR EACH STATEMENT EXECUTE FUNCTION public.refresh_case_permissions();
+
+------------
+DROP FUNCTION IF EXISTS public.refresh_location_permissions() CASCADE;
+
+CREATE
+OR REPLACE FUNCTION public.refresh_location_permissions() RETURNS TRIGGER LANGUAGE plpgsql AS $$ 
+BEGIN REFRESH MATERIALIZED VIEW CONCURRENTLY public.location_permissions;
+
+RETURN NULL;
+
+END $$;
+
+------------
+DROP TRIGGER IF EXISTS refresh_user_group_location_permissions on public.user_group;
+
+CREATE TRIGGER refresh_user_group_location_permissions
+AFTER
+INSERT
+   OR
+UPDATE
+   OR DELETE
+   OR TRUNCATE ON public.user_group FOR EACH STATEMENT EXECUTE FUNCTION public.refresh_location_permissions();
+
+------------
+DROP TRIGGER IF EXISTS refresh_user_data_location_permissions on public.user_data;
+
+CREATE TRIGGER refresh_user_data_location_permissions
+AFTER
+INSERT
+   OR
+UPDATE
+   OR DELETE
+   OR TRUNCATE ON public.user_data FOR EACH STATEMENT EXECUTE FUNCTION public.refresh_location_permissions();
+
+------------
+DROP FUNCTION IF EXISTS public.refresh_organization_permissions() CASCADE;
+
+CREATE
+OR REPLACE FUNCTION public.refresh_organization_permissions() RETURNS TRIGGER LANGUAGE plpgsql AS $$ 
+BEGIN REFRESH MATERIALIZED VIEW CONCURRENTLY public.organization_permissions;
+
+RETURN NULL;
+
+END $$;
+
+------------
+DROP TRIGGER IF EXISTS refresh_user_group_organization_permissions on public.user_group;
+
+CREATE TRIGGER refresh_user_group_organization_permissions
+AFTER
+INSERT
+   OR
+UPDATE
+   OR DELETE
+   OR TRUNCATE ON public.user_group FOR EACH STATEMENT EXECUTE FUNCTION public.refresh_organization_permissions();
+
+------------
+DROP TRIGGER IF EXISTS refresh_user_data_organization_permissions on public.user_data;
+
+CREATE TRIGGER refresh_user_data_organization_permissions
+AFTER
+INSERT
+   OR
+UPDATE
+   OR DELETE
+   OR TRUNCATE ON public.user_data FOR EACH STATEMENT EXECUTE FUNCTION public.refresh_organization_permissions();
+
+------------
+DROP FUNCTION IF EXISTS public.refresh_project_permissions() CASCADE;
+
+CREATE
+OR REPLACE FUNCTION public.refresh_project_permissions() RETURNS TRIGGER LANGUAGE plpgsql AS $$ 
+BEGIN REFRESH MATERIALIZED VIEW CONCURRENTLY public.project_permissions;
+
+RETURN NULL;
+
+END $$;
+
+------------
+DROP TRIGGER IF EXISTS refresh_user_group_project_permissions on public.user_group;
+
+CREATE TRIGGER refresh_user_group_project_permissions
+AFTER
+INSERT
+   OR
+UPDATE
+   OR DELETE
+   OR TRUNCATE ON public.user_group FOR EACH STATEMENT EXECUTE FUNCTION public.refresh_project_permissions();
+
+------------
+DROP TRIGGER IF EXISTS refresh_user_data_project_permissions on public.user_data;
+
+CREATE TRIGGER refresh_user_data_project_permissions
+AFTER
+INSERT
+   OR
+UPDATE
+   OR DELETE
+   OR TRUNCATE ON public.user_data FOR EACH STATEMENT EXECUTE FUNCTION public.refresh_project_permissions();
+
+------------
+DROP FUNCTION IF EXISTS public.refresh_form_permissions() CASCADE;
+
+CREATE
+OR REPLACE FUNCTION public.refresh_form_permissions() RETURNS TRIGGER LANGUAGE plpgsql AS $$ 
+BEGIN REFRESH MATERIALIZED VIEW CONCURRENTLY public.form_permissions;
+
+RETURN NULL;
+
+END $$;
+
+------------
+DROP TRIGGER IF EXISTS refresh_user_group_form_permissions on public.user_group;
+
+CREATE TRIGGER refresh_user_group_form_permissions
+AFTER
+INSERT
+   OR
+UPDATE
+   OR DELETE
+   OR TRUNCATE ON public.user_group FOR EACH STATEMENT EXECUTE FUNCTION public.refresh_form_permissions();
+
+------------
+DROP TRIGGER IF EXISTS refresh_user_data_form_permissions on public.user_data;
+
+CREATE TRIGGER refresh_user_data_form_permissions
+AFTER
+INSERT
+   OR
+UPDATE
+   OR DELETE
+   OR TRUNCATE ON public.user_data FOR EACH STATEMENT EXECUTE FUNCTION public.refresh_form_permissions();
+------------
+DROP TRIGGER IF EXISTS refresh_user_role_form_permissions on public.user_role;
+
+CREATE TRIGGER refresh_user_role_form_permissions
+AFTER
+INSERT
+   OR
+UPDATE
+   OR DELETE
+   OR TRUNCATE ON public.user_role FOR EACH STATEMENT EXECUTE FUNCTION public.refresh_form_permissions();
+
+------------
+DROP FUNCTION IF EXISTS public.refresh_report_permissions() CASCADE;
+
+CREATE
+OR REPLACE FUNCTION public.refresh_report_permissions() RETURNS TRIGGER LANGUAGE plpgsql AS $$ 
+BEGIN REFRESH MATERIALIZED VIEW CONCURRENTLY public.report_permissions;
+
+RETURN NULL;
+
+END $$;
+
+------------
+DROP TRIGGER IF EXISTS refresh_user_group_report_permissions on public.user_group;
+
+CREATE TRIGGER refresh_user_group_report_permissions
+AFTER
+INSERT
+   OR
+UPDATE
+   OR DELETE
+   OR TRUNCATE ON public.user_group FOR EACH STATEMENT EXECUTE FUNCTION public.refresh_report_permissions();
+
+------------
+DROP TRIGGER IF EXISTS refresh_user_data_report_permissions on public.user_data;
+
+CREATE TRIGGER refresh_user_data_report_permissions
+AFTER
+INSERT
+   OR
+UPDATE
+   OR DELETE
+   OR TRUNCATE ON public.user_data FOR EACH STATEMENT EXECUTE FUNCTION public.refresh_report_permissions();
+------------
+DROP TRIGGER IF EXISTS refresh_user_role_report_permissions on public.user_role;
+
+CREATE TRIGGER refresh_user_role_report_permissions
+AFTER
+INSERT
+   OR
+UPDATE
+   OR DELETE
+   OR TRUNCATE ON public.user_role FOR EACH STATEMENT EXECUTE FUNCTION public.refresh_report_permissions();

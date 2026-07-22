@@ -1,0 +1,13 @@
+CREATE INDEX IF NOT EXISTS user_group_area_ref_id_idx ON public.user_group USING gin(area_ref_id);
+CREATE INDEX IF NOT EXISTS user_group_case_ref_id_idx ON public.user_group USING gin(case_ref_id);
+CREATE INDEX IF NOT EXISTS user_group_location_ref_id_idx ON public.user_group USING gin(location_ref_id);
+CREATE INDEX IF NOT EXISTS user_group_organization_ref_id_idx ON public.user_group USING gin(organization_ref_id);
+CREATE INDEX IF NOT EXISTS user_group_project_ref_id_idx ON public.user_group USING gin(project_ref_id);
+CREATE INDEX IF NOT EXISTS user_group_form_schema_ids_idx ON public.user_group USING gin("groupFormSchemaIds");
+CREATE INDEX IF NOT EXISTS user_group_report_schema_ids_idx ON public.user_group USING gin("groupReportSchemaIds");
+
+CREATE INDEX IF NOT EXISTS user_data_user_group_ids_idx ON public.user_data USING gin(user_group_ids);
+
+CREATE INDEX IF NOT EXISTS user_role_role_permissions_idx ON public.user_role USING gin("rolePermissions");
+
+CREATE INDEX IF NOT EXISTS user_data_user_auth_ref_id_idx ON public.user_data(user_auth_ref_id);

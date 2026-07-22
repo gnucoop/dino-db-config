@@ -1,0 +1,70 @@
+table:
+  name: user_group
+  schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - id
+        - created_at
+        - updated_at
+        - user_role_ref_id
+        - groupFormSchemaIds
+        - groupReportSchemaIds
+        - groupName
+        - _attachments
+        - _rev
+        - _deleted
+        - is_deleted
+        - area_ref_id
+        - location_ref_id
+        - organization_ref_id
+        - project_ref_id
+        - case_ref_id
+        - form_status_ref_id
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - _deleted
+        - is_deleted
+        - area_ref_id
+        - case_ref_id
+        - form_status_ref_id
+        - location_ref_id
+        - organization_ref_id
+        - project_ref_id
+        - _attachments
+        - groupFormSchemaIds
+        - groupReportSchemaIds
+        - groupName
+        - _rev
+        - created_at
+        - updated_at
+        - id
+        - user_role_ref_id
+      filter: {}
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - _deleted
+        - is_deleted
+        - area_ref_id
+        - case_ref_id
+        - form_status_ref_id
+        - location_ref_id
+        - organization_ref_id
+        - project_ref_id
+        - _attachments
+        - groupFormSchemaIds
+        - groupReportSchemaIds
+        - groupName
+        - _rev
+        - created_at
+        - updated_at
+        - id
+        - user_role_ref_id
+      filter: {}
+      check: {}

@@ -1,0 +1,59 @@
+table:
+  name: log
+  schema: public
+object_relationships:
+  - name: form_data
+    using:
+      foreign_key_constraint_on: form_data_ref_id
+  - name: form_schema
+    using:
+      foreign_key_constraint_on: form_schema_ref_id
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - id
+        - created_at
+        - updated_at
+        - _deleted
+        - _rev
+        - _attachments
+        - is_deleted
+        - text
+        - form_schema_ref_id
+        - form_data_ref_id
+        - author
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - _deleted
+        - is_deleted
+        - _attachments
+        - author
+        - _rev
+        - text
+        - created_at
+        - updated_at
+        - form_data_ref_id
+        - form_schema_ref_id
+        - id
+      filter: {}
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - _deleted
+        - is_deleted
+        - _attachments
+        - author
+        - _rev
+        - text
+        - created_at
+        - updated_at
+        - form_data_ref_id
+        - form_schema_ref_id
+        - id
+      filter: {}
+      check: {}

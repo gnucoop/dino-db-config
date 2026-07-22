@@ -1,0 +1,4 @@
+-- Could not auto-generate a down migration.
+-- Please write an appropriate down migration for the SQL below:
+-- alter table "public"."report_schema" add column "required_metrics" JSONB
+--  not null default jsonb_build_array();

@@ -1,0 +1,107 @@
+table:
+  name: location
+  schema: public
+array_relationships:
+  - name: form_data
+    using:
+      foreign_key_constraint_on:
+        column: location_ref_id
+        table:
+          name: form_data
+          schema: public
+  - name: location_permissions
+    using:
+      manual_configuration:
+        column_mapping:
+          id: metric_id
+        insertion_order: null
+        remote_table:
+          name: location_permissions
+          schema: public
+  - name: report_data
+    using:
+      foreign_key_constraint_on:
+        column: location_ref_id
+        table:
+          name: report_data
+          schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - id
+        - created_at
+        - updated_at
+        - name
+        - parent_id
+        - parent_name
+        - coordinates
+        - _deleted
+        - _rev
+        - _attachments
+        - is_deleted
+        - metric_data
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - _deleted
+        - is_deleted
+        - created_at
+        - _attachments
+        - coordinates
+        - metric_data
+        - name
+        - parent_name
+        - _rev
+        - updated_at
+        - id
+        - parent_id
+      filter:
+        _or:
+          - _exists:
+              _table:
+                name: location_permissions
+                schema: public
+              _where:
+                _and:
+                  - metric_id:
+                      _eq: 7044761a-a850-4c37-b6bc-c2d2ca2a3280
+                  - user_id:
+                      _eq: X-Hasura-User-Id
+          - location_permissions:
+              user_id:
+                _eq: X-Hasura-User-Id
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - _deleted
+        - is_deleted
+        - created_at
+        - _attachments
+        - coordinates
+        - metric_data
+        - name
+        - parent_name
+        - _rev
+        - updated_at
+        - id
+        - parent_id
+      filter:
+        _or:
+          - _exists:
+              _table:
+                name: location_permissions
+                schema: public
+              _where:
+                _and:
+                  - metric_id:
+                      _eq: 7044761a-a850-4c37-b6bc-c2d2ca2a3280
+                  - user_id:
+                      _eq: X-Hasura-User-Id
+          - location_permissions:
+              user_id:
+                _eq: X-Hasura-User-Id
+      check: {}

@@ -1,0 +1,4 @@
+-- Could not auto-generate a down migration.
+-- Please write an appropriate down migration for the SQL below:
+-- alter table "public"."form_schema" add column "form_schema_metrics" jsonb
+--  null default jsonb_build_array();

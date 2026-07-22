@@ -1,0 +1,142 @@
+table:
+  name: report_schema
+  schema: public
+array_relationships:
+  - name: report_data
+    using:
+      foreign_key_constraint_on:
+        column: report_schema_ref_id
+        table:
+          name: report_data
+          schema: public
+  - name: report_permissions
+    using:
+      manual_configuration:
+        column_mapping:
+          id: report_schema_id
+        insertion_order: null
+        remote_table:
+          name: report_permissions
+          schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        _exists:
+          _table:
+            name: report_permissions
+            schema: public
+          _where:
+            _and:
+              - report_schema_id:
+                  _eq: 7044761a-a850-4c37-b6bc-c2d2ca2a3280
+              - user_id:
+                  _eq: X-Hasura-User-Id
+              - _or:
+                  - report_schema_permissions:
+                      _contains: create
+                  - report_schema_permissions:
+                      _contains: all
+      columns:
+        - _deleted
+        - is_deleted
+        - _attachments
+        - form_schema_ids
+        - required_metrics
+        - schema
+        - icon
+        - label
+        - name
+        - _rev
+        - created_at
+        - updated_at
+        - id
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - _deleted
+        - is_deleted
+        - _attachments
+        - form_schema_ids
+        - required_metrics
+        - schema
+        - icon
+        - label
+        - name
+        - _rev
+        - created_at
+        - updated_at
+        - id
+      filter:
+        _and:
+          - _or:
+              - _exists:
+                  _table:
+                    name: report_permissions
+                    schema: public
+                  _where:
+                    _and:
+                      - report_schema_id:
+                          _eq: 7044761a-a850-4c37-b6bc-c2d2ca2a3280
+                      - user_id:
+                          _eq: X-Hasura-User-Id
+                      - _or:
+                          - report_schema_permissions:
+                              _contains: view
+                          - report_schema_permissions:
+                              _contains: all
+              - report_permissions:
+                  _and:
+                    - user_id:
+                        _eq: X-Hasura-User-Id
+                    - _or:
+                        - report_schema_permissions:
+                            _contains: view
+                        - report_schema_permissions:
+                            _contains: all
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - _deleted
+        - is_deleted
+        - _attachments
+        - form_schema_ids
+        - required_metrics
+        - schema
+        - icon
+        - label
+        - name
+        - _rev
+        - created_at
+        - updated_at
+        - id
+      filter:
+        _and:
+          - _or:
+              - _exists:
+                  _table:
+                    name: report_permissions
+                    schema: public
+                  _where:
+                    _and:
+                      - report_schema_id:
+                          _eq: 7044761a-a850-4c37-b6bc-c2d2ca2a3280
+                      - user_id:
+                          _eq: X-Hasura-User-Id
+                      - _or:
+                          - report_schema_permissions:
+                              _contains: edit
+                          - report_schema_permissions:
+                              _contains: all
+              - report_permissions:
+                  _and:
+                    - user_id:
+                        _eq: X-Hasura-User-Id
+                    - _or:
+                        - report_schema_permissions:
+                            _contains: edit
+                        - report_schema_permissions:
+                            _contains: all
+      check: {}

@@ -1,0 +1,3 @@
+table:
+  name: form_permissions
+  schema: public

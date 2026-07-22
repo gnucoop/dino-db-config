@@ -1,0 +1,58 @@
+table:
+  name: notification
+  schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - id
+        - created_at
+        - updated_at
+        - _deleted
+        - _rev
+        - _attachments
+        - is_deleted
+        - recipients
+        - readers
+        - text
+        - type
+        - icon
+        - redirect_url
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - _deleted
+        - is_deleted
+        - created_at
+        - _attachments
+        - readers
+        - recipients
+        - icon
+        - redirect_url
+        - _rev
+        - text
+        - type
+        - updated_at
+        - id
+      filter: {}
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - _deleted
+        - is_deleted
+        - created_at
+        - _attachments
+        - readers
+        - recipients
+        - icon
+        - redirect_url
+        - _rev
+        - text
+        - type
+        - updated_at
+        - id
+      filter: {}
+      check: {}

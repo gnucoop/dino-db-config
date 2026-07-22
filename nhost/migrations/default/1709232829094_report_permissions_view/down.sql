@@ -1,0 +1,29 @@
+-- Could not auto-generate a down migration.
+-- Please write an appropriate down migration for the SQL below:
+-- CREATE MATERIALIZED VIEW IF NOT EXISTS "public"."report_permissions" AS
+-- SELECT
+--    ud.full_name as user_name,
+--    ud.user_auth_ref_id as user_id,
+--    jsonb_array_elements_text(
+--       jsonb_agg(
+--          CASE
+--             WHEN item = 'all' THEN '7044761a-a850-4c37-b6bc-c2d2ca2a3280' :: uuid
+--             ELSE item :: uuid
+--          END
+--       )
+--    ) :: uuid as report_schema_id,
+--    (ur."rolePermissions" ->> 'report_data') :: jsonb as report_data_permissions,
+--    (ur."rolePermissions" ->> 'report_schema') :: jsonb as report_schema_permissions
+-- FROM
+--    user_group as ug
+--    JOIN user_data as ud ON ud.user_group_ids ? ug.id :: text
+--    JOIN user_role as ur ON ug.user_role_ref_id = ur.id
+--    CROSS JOIN jsonb_array_elements_text(ug."groupReportSchemaIds") as item
+-- WHERE
+--    JSONB_ARRAY_LENGTH(ug."groupReportSchemaIds") > 0 AND
+--    ud.is_deleted = 'false' AND
+--    ug.is_deleted = 'false'
+-- GROUP BY
+--    ud.full_name,
+--    ud.user_auth_ref_id,
+--    ur."rolePermissions";
