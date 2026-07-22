@@ -1,0 +1,9 @@
+.secrets.nhost
+.nhost
+web/node_modules
+node_modules
+functions/node_modules
+*.toml
+.secrets
+/*.sql
+/*.json
