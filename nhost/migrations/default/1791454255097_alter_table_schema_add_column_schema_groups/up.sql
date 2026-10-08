@@ -1,0 +1,5 @@
+ALTER TABLE public.form_schema
+ADD COLUMN IF NOT EXISTS form_schema_groups jsonb DEFAULT jsonb_build_array();
+
+ALTER TABLE public.report_schema
+ADD COLUMN IF NOT EXISTS report_schema_groups jsonb DEFAULT jsonb_build_array();

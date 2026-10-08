@@ -43,6 +43,8 @@ insert_permissions:
         - _attachments
         - form_schema_ids
         - required_metrics
+        - available_metrics
+        - report_schema_groups
         - schema
         - icon
         - label
@@ -60,6 +62,8 @@ select_permissions:
         - _attachments
         - form_schema_ids
         - required_metrics
+        - available_metrics
+        - report_schema_groups
         - schema
         - icon
         - label
@@ -104,6 +108,8 @@ update_permissions:
         - _attachments
         - form_schema_ids
         - required_metrics
+        - available_metrics
+        - report_schema_groups
         - schema
         - icon
         - label
