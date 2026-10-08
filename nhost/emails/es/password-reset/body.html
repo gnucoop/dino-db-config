@@ -1,18 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Establece tu contraseña de Dino</title>
 </head>
 
-<body>
-  <h2>Recuperar contraseña</h2>
-  <p>Utiliza el siguiente enlace para recuperar tu contraseña:</p>
-  <p>
-    <a href="${link}">
-      Recuperar contraseña
-    </a>
-  </p>
+<body style="margin:0;padding:0;background-color:#f2f4f7;">
+  <div style="display:none;max-height:0;overflow:hidden;">
+    Usa el enlace de este correo para elegir una contraseña para tu cuenta Dino.
+  </div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f2f4f7;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:520px;background-color:#ffffff;border-radius:8px;">
+          <tr>
+            <td style="padding:24px 32px;border-bottom:1px solid #e4e7ec;font-family:Arial,Helvetica,sans-serif;font-size:22px;font-weight:bold;color:#1A3E70;">
+              <img src="https://raw.githubusercontent.com/gnucoop/dino/main/projects/dinoapp/src/assets/icons/logos/logodino-2.png" width="120" height="50" alt="Dino" style="display:block;border:0;outline:none;text-decoration:none;" />
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:32px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#344054;">
+              <p style="margin:0 0 16px;font-size:20px;line-height:28px;font-weight:bold;color:#101828;">
+                Hola, ${displayName}:
+              </p>
+              <p style="margin:0 0 24px;">
+                Para elegir la contraseña de tu cuenta Dino, ${email}, haz clic en el botón de abajo.
+              </p>
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 24px;">
+                <tr>
+                  <td align="center" style="border-radius:6px;background-color:#1A3E70;">
+                    <a href="${link}" target="_blank" style="display:inline-block;padding:12px 28px;font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:bold;color:#ffffff;text-decoration:none;border-radius:6px;">
+                      Establecer la contraseña
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              <p style="margin:0 0 8px;font-size:14px;line-height:20px;color:#667085;">
+                Si el botón no funciona, copia este enlace en tu navegador:
+              </p>
+              <p style="margin:0 0 24px;font-size:13px;line-height:20px;word-break:break-all;">
+                <a href="${link}" target="_blank" style="color:#1A3E70;">${link}</a>
+              </p>
+              <p style="margin:0;font-size:14px;line-height:20px;color:#667085;">
+                El enlace solo se puede usar una vez y caduca después de un tiempo limitado. Si ya no funciona,
+                usa <strong>¿Olvidaste tu contraseña?</strong> en la página de inicio de sesión de Dino para recibir uno nuevo.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:20px 32px;border-top:1px solid #e4e7ec;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#98a2b3;">
+              Si no esperabas este correo, puedes ignorarlo: no cambiará nada en tu cuenta.
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
 </body>
 
 </html>
